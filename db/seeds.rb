@@ -9,6 +9,7 @@ require 'rest-client'
 require 'JSON'
 
 Ingredient.destroy_all
+Meal.destroy_all
 
 ingredient_data = RestClient.get("https://www.themealdb.com/api/json/v1/1/list.php?i=list")
 ingredients = JSON.parse(ingredient_data)
@@ -24,4 +25,14 @@ meals["meals"].map do |meal|
     Meal.create(name: meal["strMeal"], area: meal["strArea"], category: meal["strCategory"], instructions: meal["strInstructions"], image_url: meal["strMealThumb"], source: meal["strSource"])
 end
 
-byebug
+meals["meals"].map do |meal|
+    n = 1
+    while n < 21
+        if meal["strIngredient#{n}"]
+            Recipe.create(ingredient: Ingredient.find_by(name: meal["strIngredient#{n}"]), meal: Meal.find_by(name: meal["strMeal"]), measurements: meal["strMeasure#{n}"])
+        end
+        n += 1
+    end
+end
+
+puts "Seeds done!"
