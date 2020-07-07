@@ -1,9 +1,9 @@
-<h1><%= @meal.name %></h1><br>
+<h1><%= @meal.name %></h1>
 
-<% if current_user %>
-  <%= link_to "favorite",   favorite_path(@meal, type: "favorite"), method: :get %><br>
-  <%= link_to "unfavorite", favorite_path(@meal, type: "unfavorite"), method: :get %><br>
-<% end %>
+<%= notice %><br>
+
+<%= link_to "favorite",   favorite_path(@meal, type: "favorite"), method: :get %><br>
+<%= link_to "unfavorite", favorite_path(@meal, type: "unfavorite"), method: :get %><br>
 
 <ul>
 <br><% @meal.recipes.each do |ing| %>

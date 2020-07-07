@@ -8,22 +8,26 @@
 require 'rest-client'
 require 'JSON'
 
-Ingredient.destroy_all
-Meal.destroy_all
-Recipe.destroy_all
+# Ingredient.destroy_all
+# Meal.destroy_all
+# Recipe.destroy_all
 
-ingredient_data = RestClient.get("https://www.themealdb.com/api/json/v1/1/list.php?i=list")
-ingredients = JSON.parse(ingredient_data)
 
-ingredients["meals"].map do |ingredient|
-    Ingredient.create(name: ingredient["strIngredient"], description: ingredient["strDescription"])
-end
+# ingredient_data = RestClient.get("https://www.themealdb.com/api/json/v1/1/list.php?i=list")
+# ingredients = JSON.parse(ingredient_data)
 
-meal_data = RestClient.get("https://www.themealdb.com/api/json/v1/1/search.php?s=")
+# ingredients["meals"].map do |ingredient|
+#     Ingredient.create(name: ingredient["strIngredient"], description: ingredient["strDescription"])
+# end
+
+
+meal_data = RestClient.get("https://www.themealdb.com/api/json/v1/1/search.php?f=y")
 meals = JSON.parse(meal_data)
 
 meals["meals"].map do |meal|
-    Meal.create(name: meal["strMeal"], area: meal["strArea"], category: meal["strCategory"], instructions: meal["strInstructions"], image_url: meal["strMealThumb"], source: meal["strSource"])
+    if !Meal.find_by(name: meal["strMeal"], area: meal["strArea"], category: meal["strCategory"], instructions: meal["strInstructions"], image_url: meal["strMealThumb"], source: meal["strSource"])
+        Meal.create(name: meal["strMeal"], area: meal["strArea"], category: meal["strCategory"], instructions: meal["strInstructions"], image_url: meal["strMealThumb"], source: meal["strSource"])
+    end
 end
 
 meals["meals"].map do |meal|

@@ -1,5 +1,7 @@
+<%= button_to "Logout", logout_path, method: :get %>
+
 <h1> Meals: </h1>
 
-<% @meals.each do |meal| %>
-    <%= link_to meal.name, meal %><br>
+<% @meals.order(:name).each do |meal| %>
+    <ul><%= link_to meal.name.titleize, meal %><br></ul>
 <% end %>
