@@ -1,0 +1,6 @@
+<h1><%= @ingredient.name %></h1>
+<p><%= @ingredient.description %> </p>
+
+<br><% @ingredient.meals.each do |meal| %>
+    <%= link_to meal.name, meal %><br>
+    <% end %><br>

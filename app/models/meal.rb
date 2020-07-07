@@ -4,4 +4,14 @@ class Meal < ApplicationRecord
 
     has_many :favorite_meals
     has_many :users, through: :favorite_meals
+
+    def read_instructions
+        self.instructions.split(/[\r\n]+/)
+    end
+
+    def self.collect_categories
+        self.all.collect do |meal|
+            meal.category
+        end 
+    end
 end

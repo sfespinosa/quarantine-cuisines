@@ -1,0 +1,5 @@
+<h1> Favorite Meals </h1>
+
+<% @user.meals.each do |meal| %>
+    <%= link_to meal.name, meal %><br>
+<% end %>

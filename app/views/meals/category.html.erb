@@ -1,0 +1,6 @@
+<h1>Category</h1>
+
+<% Meal.collect_categories.uniq.each do |cat| %>
+    <%= cat.to_s %><br>
+<% end %>
+   
