@@ -10,6 +10,7 @@ require 'JSON'
 
 Ingredient.destroy_all
 Meal.destroy_all
+Recipe.destroy_all
 
 ingredient_data = RestClient.get("https://www.themealdb.com/api/json/v1/1/list.php?i=list")
 ingredients = JSON.parse(ingredient_data)

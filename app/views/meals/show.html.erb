@@ -1,0 +1,10 @@
+<h1><%= @meal.name %></h1><br>
+<% @meal.recipes.each do |ing| %>
+    <%= ing.ingredient.name %>  <%= ing.measurements %><br>
+    <% end %><br>
+<h4> Instructions: </h4>
+<%= @meal.instructions %><br>
+<%= image_tag(@meal.image_url) %><br>
+Category: <%= @meal.category %><br>
+Cuisine: <%= @meal.area %><br>
+<%= link_to @meal.source, @meal.source %>
