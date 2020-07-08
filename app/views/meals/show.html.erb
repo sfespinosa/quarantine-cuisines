@@ -1,9 +1,11 @@
 <h1><%= @meal.name %></h1>
+Category: <%= @meal.category %><br>
+Cuisine: <%= @meal.area %><br>
 
 <%= notice %><br>
 
-<%= link_to "favorite",   favorite_path(@meal, type: "favorite"), method: :get %><br>
-<%= link_to "unfavorite", favorite_path(@meal, type: "unfavorite"), method: :get %><br>
+<%= link_to "Favorite",   favorite_path(@meal, type: "favorite"), method: :get %><br>
+<%= link_to "Unfavorite", favorite_path(@meal, type: "unfavorite"), method: :get %><br>
 
 <ul>
 <br><% @meal.recipes.each do |ing| %>
@@ -16,10 +18,6 @@
     <li><%= line %></li>
 <% end %></ol><br>
 
-
 <br><%= image_tag(@meal.image_url) %><br>
-
-Category: <%= @meal.category %><br>
-Cuisine: <%= @meal.area %><br>
-<%= link_to @meal.source, @meal.source %>
+<p>Source:  <%= link_to @meal.source, @meal.source %></p>
 
