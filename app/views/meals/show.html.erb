@@ -18,6 +18,14 @@ Cuisine: <%= @meal.area %><br>
     <li><%= line %></li>
 <% end %></ol><br>
 
-<br><%= image_tag(@meal.image_url) %><br>
-<p>Source:  <%= link_to @meal.source, @meal.source %></p>
+<%= image_tag(@meal.image_url) %><br>
+<p>Source:  <%= link_to @meal.source, @meal.source %></p><br>
 
+
+<%= link_to 'Review This Meal', review_path %><br>
+
+<% @meal.reviews.each do |rev| %> 
+    Reviewer Name: <%= rev.user.name %><br>
+    Comment: <%= rev.comment %><br>
+    Stars: <%= rev.stars %>
+<% end %> 

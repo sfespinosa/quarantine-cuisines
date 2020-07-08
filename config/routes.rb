@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
+  resources :reviews, only: [:create]
   resources :ingredients, only: [:index, :show]
   # resources :favorite_meals
   # resources :recipes
   get 'meals/category', to: 'meals#category', as: 'category'
   resources :meals, only: [:index, :show]
   get 'meals/:id/favorite', to: 'meals#favorite', as: 'favorite'
+  get 'meals/:id/review', to: 'reviews#new', as: 'review'
   resources :users, only: [:show, :new, :create]
 
   get '/login', to: 'auth#login', as: 'login'

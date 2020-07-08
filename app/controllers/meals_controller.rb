@@ -22,9 +22,5 @@ class MealsController < ApplicationController
         else
             redirect_to meal_path
         end
-
-        def category
-            
-        end
     end
 end
