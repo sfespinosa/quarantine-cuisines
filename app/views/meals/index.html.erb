@@ -1,23 +1,29 @@
 <br>
 <br>
 <br>
-
+<div class="container-sm">
 <h1 class="p-2"> Meals: </h1>
 
 <div class="row row-cols-1 row-cols-md-3 p-5">
 <% @meals.order(:name).each do |meal| %>
     <%#= link_to meal.name.titleize, meal %><br>
-    <div class="col mb-4">
+    <div class="col mb-4 mx-auto">
     <div class="card h-100" style="width: 20rem;">
     <img src=<%= meal.image_url %> class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title"><%= meal.name.titleize %></h5>
             <p class="card-text"><%= meal.area %> <%= meal.category %></p>
-            <a href="<%= meal_path(meal) %>" class="card-link">View Recipe</a>
-            <a href="<%= favorite_path(meal) %>" class="card-link">Add to Favorites</a>
+            <a href="<%= meal_path(meal) %>" class="btn btn-dark">View Recipe</a>
+            <% if logged_in? %>
+            <% if @user.meals.include?(meal)%>
+            <a href="<%= favorite_path(meal, type: "unfavorite") %>" class="btn btn-dark">Unfavorite</a>
+            <% else %>
+            <a href="<%= favorite_path(meal, type: "favorite") %>" class="btn btn-dark">Add to Favorites</a>
+            <% end %>
+            <% end %>
         </div>
     </div>
     </div>
 <% end %>
 </div>
-
+</div>

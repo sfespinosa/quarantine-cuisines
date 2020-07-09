@@ -13,10 +13,3 @@
  *= require_tree .
  *= require_self
  */
-.navbar {
-    color:red;
-}
-
-.nav-link a {
-    color: red;
-}
