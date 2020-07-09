@@ -3,7 +3,7 @@ class MealsController < ApplicationController
     before_action :redirect_user, only: [:favorite]
    
     def index 
-        @meals = Meal.all
+        @meals = Meal.search(params[:search])
     end
 
     def show
@@ -25,5 +25,7 @@ class MealsController < ApplicationController
         end
     end
 
-    
+    def home
+
+    end
 end

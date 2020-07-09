@@ -12,8 +12,8 @@
 
   <body>
     <nav class="navbar fixed-top navbar-expand-sm navbar-light bg-light">
-    <span class="navbar-brand mb-0 h1">QuarantineCuisines</span>
-    <ul class="navbar-nav">
+    <a class="navbar-brand mb-0 h1" href=<%= root_path %>>QuarantineCuisines</a>
+    <ul class="navbar-nav ml-auto">
       <li class="nav-item"><a class="nav-link" href="<%= meals_path %> ">Meals</a></li>
       <li class="nav-item"><a class="nav-link" href="<%= ingredients_path %> ">Ingredients</a></li>
         <% if logged_in? %>
@@ -25,6 +25,12 @@
         <% end %>
     </ul>
     </nav>
+    <div class="container-fluid" style="width: 85rem;">
+      <div class="card border-0 shadow mb-3">
+        <div class="card-body p-5">
     <%= yield %>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

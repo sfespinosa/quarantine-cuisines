@@ -1,16 +1,15 @@
 <br>
 <br>
 <br>
-
-<%= flash[:message] %><br>
-<h1>Login!</h1>
-
-<br><%= form_for :auth do |f| %>
+<br>
+<%= form_for :auth, html: { class: "form-signin" } do |f| %>
+<h1 class="h3 mb-3 font-weight-normal">Please Sign In!</h1>
+<%= flash[:message] %><br><br>
     <%= f.label :name %>
-    <%= f.text_field :name %><br>
+    <%= f.text_field :name, class: "form-control" %><br>
 
     <%= f.label :password %>
-    <%= f.password_field :password %><br>
+    <%= f.password_field :password, class: "form-control" %><br>
 
-<%= f.submit "Login" %>
+<%= f.submit "Login", class: "btn btn-lg btn-primary btn-block"%>
 <% end %>

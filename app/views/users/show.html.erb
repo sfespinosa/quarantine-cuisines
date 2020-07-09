@@ -1,14 +1,14 @@
 <br>
 <br>
 <br>
-<div class="container-sm">
 <h1 class="p-2">Hi, <%= @user.name %>!</h1>
-<p class="p-2">Here are your favorite meals:</p>
+<hr/>
+<h3 class="p-2">Your favorite meals:</h3>
 
 <div class="row row-cols-1 row-cols-md-3 p-5">
 <% @user.meals.order(:name).each do |meal| %>
     <div class="col mb-4 mx-auto">
-    <div class="card h-100" style="width: 20rem;">
+    <div class="card h-100 border-dark">
     <img src=<%= meal.image_url %> class="card-img-top" alt="Picture of Meal">
         <div class="card-body">
             <h5 class="card-title"><%= meal.name.titleize %></h5>
@@ -19,5 +19,25 @@
     </div>
     </div>
 <% end %>
+</div>
+
+<hr/>
+<h3 class="p-2">Your reviewed meals:</h3>
+
+<div class="row row-cols-1 row-cols-md-3 p-5">
+<% @user.reviews.each do |review| %>
+    <div class="col mb-4 mx-auto">
+    <div class="card h-100 border-dark">
+    <img src=<%= review.meal.image_url %> class="card-img-top" alt="Picture of Meal">
+        <div class="card-body">
+            <h5 class="card-title"><%= review.meal.name.titleize %></h5>
+            <p class="card-text"> Stars: <%= review.display_stars %><br>Comment: <%= review.comment %></p>
+            <a href="<%= meal_path(review.meal) %>" class="btn btn-primary">View Recipe</a>
+            <%= link_to "Delete Review", review_path(review), method: 'delete', data: { confirm: "Are you sure you want to delete?" }, class: "btn btn-primary" %>
+        </div>
+    </div>
+    </div>
+<% end %>
+</div>
 </div>
 </div>

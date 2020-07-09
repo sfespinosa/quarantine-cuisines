@@ -19,4 +19,6 @@ class Review < ApplicationRecord
         starz  
     end
 
+    
+
 end

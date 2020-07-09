@@ -1,13 +1,13 @@
 <br>
 <br>
 <br>
-<div class="container-sm">
+
 <h1 class="p-2"> Meals: </h1>
 
 <div class="row row-cols-1 row-cols-md-3 p-5">
 <% @meals.order(:name).each do |meal| %>
     <div class="col mb-4 mx-auto">
-    <div class="card h-100" style="width: 20rem;">
+    <div class="card h-100 border-dark">
     <img src=<%= meal.image_url %> class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title"><%= meal.name.titleize %></h5>
@@ -25,4 +25,4 @@
     </div>
 <% end %>
 </div>
-</div>
+
