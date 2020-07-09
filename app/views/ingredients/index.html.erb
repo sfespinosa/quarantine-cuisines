@@ -6,12 +6,12 @@
 
 <div class="row row-cols-1 row-cols-md-3 p-5">
 <% @ingredients.order(:name).each do |ingredient| %>
-    <div class="col mb-4">
+    <div class="col mb-4 mx-auto">
     <div class="card" style="width: 18rem;">
     
         <div class="card-body">
             <h5 class="card-title"><%= ingredient.name %></h5>
-            <a href="<%= ingredient_path(ingredient) %>" class="card-link">View Ingredient</a>
+            <a href="<%= ingredient_path(ingredient) %>" class="btn btn-primary">View Ingredient</a>
         </div>
     </div>
     </div>

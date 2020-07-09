@@ -15,7 +15,7 @@ class ReviewsController < ApplicationController
             redirect_to meal_path(@meal)
         else
             flash[:message] = @review.errors.full_messages
-            render :new
+            redirect_back(fallback_location: meal_path(@meal))
         end
     end
 

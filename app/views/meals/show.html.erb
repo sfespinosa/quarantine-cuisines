@@ -16,10 +16,7 @@ Cuisine: <%= @meal.area %><br>
             <a href="<%= favorite_path(@meal, type: "favorite") %>" class="btn btn-primary">Add to Favorites</a>
             <% end %>
             <% end %>
-<br><%= notice %>
-<%#= link_to "Favorite",   favorite_path(@meal, type: "favorite"), method: :get %><br>
-<%#= link_to "Unfavorite", favorite_path(@meal, type: "unfavorite"), method: :get %><br>
-
+<br><br>
 <ul>
 <% @meal.recipes.each do |ing| %>
     <li><%= ing.measurements %> <%= ing.ingredient.name %></li>
@@ -33,17 +30,17 @@ Cuisine: <%= @meal.area %><br>
 
 <p>Source:  <%= link_to @meal.source, @meal.source %></p><br>
 <br>
+
 <div class="container bootstrap snippet">
     <div class="row">
 		<div class="col-md-12">
 		    <div class="blog-comment">
 				<h3>Reviews</h3>
-                <%#= link_to 'Review This Meal', user_review_path %>
                 <% if logged_in? %>
                 <%= flash[:message] %>
 
 <%= form_for @review, html: { class: "form-block" } do |f| %>
-    <%= f.hidden_field :user_id, value: @user.id %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
     <%= f.hidden_field :meal_id, value: @meal.id %>
 <div class="row">
 			<div class="col-xs-12 col-sm-6">
@@ -55,7 +52,7 @@ Cuisine: <%= @meal.area %><br>
 			<div class="col-xs-12 col-sm-6">
 				<div class="form-group">
     <%= f.label :stars %>
-    <%= f.number_field :stars, class: "form-input" %><br>
+    <%= f.number_field :stars, min: 1, max: 5, class: "form-input" %><br>
     				</div>
 			</div>
 
@@ -73,8 +70,9 @@ Please <%= link_to "login", login_path %> to review meal
 				  <div class="post-comments">
 				      <p class="meta"><%= rev.user.name %> says:</p>
 				      <p>
+                        Stars: <%= rev.display_stars %><br>
 				          <%= rev.comment %><br>
-                          Stars: <%= rev.stars %><br>
+
                                   <% if current_user == rev.user %>
                                 <%= link_to "Edit", edit_review_path(rev), method: 'get' %> / <%= link_to "Delete", review_path(rev), method: 'delete', data: { confirm: "Are you sure you want to delete?" } %>
                                 <% end %>

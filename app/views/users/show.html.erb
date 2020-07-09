@@ -1,9 +1,23 @@
 <br>
 <br>
 <br>
+<div class="container-sm">
+<h1 class="p-2">Hi, <%= @user.name %>!</h1>
+<p class="p-2">Here are your favorite meals:</p>
 
-<h1> Favorite Meals </h1>
-
-<% @user.meals.each do |meal| %>
-    <%= link_to meal.name, meal %><br>
+<div class="row row-cols-1 row-cols-md-3 p-5">
+<% @user.meals.order(:name).each do |meal| %>
+    <div class="col mb-4 mx-auto">
+    <div class="card h-100" style="width: 20rem;">
+    <img src=<%= meal.image_url %> class="card-img-top" alt="Picture of Meal">
+        <div class="card-body">
+            <h5 class="card-title"><%= meal.name.titleize %></h5>
+            <p class="card-text"> Cuisine: <%= meal.area %><br>Category: <%= meal.category %></p>
+            <a href="<%= meal_path(meal) %>" class="btn btn-primary">View Recipe</a>
+            <a href="<%= favorite_path(meal, type: "unfavorite") %>" class="btn btn-primary">Unfavorite</a>
+        </div>
+    </div>
+    </div>
 <% end %>
+</div>
+</div>
