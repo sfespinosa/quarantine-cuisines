@@ -1,6 +1,11 @@
+<br>
+<br>
+<br>
+
+<%= flash[:message] %><br>
 <h1>Login!</h1>
-<%= flash[:message] %>
-<%= form_for :auth do |f| %>
+
+<br><%= form_for :auth do |f| %>
     <%= f.label :name %>
     <%= f.text_field :name %><br>
 

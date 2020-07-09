@@ -1,3 +1,7 @@
+<br>
+<br>
+<br>
+
 <h1><%= @meal.name %></h1>
 Category: <%= @meal.category %><br>
 Cuisine: <%= @meal.area %><br>
@@ -22,10 +26,14 @@ Cuisine: <%= @meal.area %><br>
 <p>Source:  <%= link_to @meal.source, @meal.source %></p><br>
 
 
-<%= link_to 'Review This Meal', review_path %><br>
+<%= link_to 'Review This Meal', user_review_path %><br>
 
+<br>
 <% @meal.reviews.each do |rev| %> 
     Reviewer Name: <%= rev.user.name %><br>
     Comment: <%= rev.comment %><br>
-    Stars: <%= rev.stars %>
+    Stars: <%= rev.stars %><br><br>
+        <% if current_user == rev.user %>
+            <%= button_to "Edit Review", edit_review_path(rev), method: 'get' %> <%= button_to "Delete Review", review_path(rev), method: 'delete' %>
+        <% end %>
 <% end %> 

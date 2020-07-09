@@ -1,7 +1,7 @@
 class MealsController < ApplicationController
-    before_action :current_user, only: [:favorite]
+    before_action :current_user, only: [:favorite, :show]
     before_action :redirect_user, only: [:favorite]
-
+   
     def index 
         @meals = Meal.all
     end
@@ -23,4 +23,6 @@ class MealsController < ApplicationController
             redirect_to meal_path
         end
     end
+
+    
 end

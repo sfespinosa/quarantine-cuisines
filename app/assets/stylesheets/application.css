@@ -13,7 +13,10 @@
  *= require_tree .
  *= require_self
  */
- @import "semantic-ui";
+.navbar {
+    color:red;
+}
 
-
- 
+.nav-link a {
+    color: red;
+}

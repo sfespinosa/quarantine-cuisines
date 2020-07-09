@@ -16,6 +16,7 @@ class AuthController < ApplicationController
 
     def logout
         session.clear
+        flash[:message] = "You've logged out! Please sign in again"
         redirect_to login_path
     end
 
