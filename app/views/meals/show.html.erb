@@ -70,8 +70,9 @@ Please <%= link_to "login", login_path %> to review meal
 				  <div class="post-comments">
 				      <p class="meta"><%= rev.user.name %> says:</p>
 				      <p>
+                        Stars: <%= rev.display_stars %><br>
 				          <%= rev.comment %><br>
-                          Stars: <%= rev.stars %><br>
+
                                   <% if current_user == rev.user %>
                                 <%= link_to "Edit", edit_review_path(rev), method: 'get' %> / <%= link_to "Delete", review_path(rev), method: 'delete', data: { confirm: "Are you sure you want to delete?" } %>
                                 <% end %>

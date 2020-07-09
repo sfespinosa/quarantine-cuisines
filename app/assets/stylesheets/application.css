@@ -13,3 +13,14 @@
  *= require_tree .
  *= require_self
  */
+
+ body {
+    /* background-image: url("https://printawallpaper.com/upload/designs/food_doodle_detail.jpg");*/
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-size: auto;
+ }
+
+.card-gb {
+     background-color: white;
+}
