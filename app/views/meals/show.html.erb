@@ -13,14 +13,13 @@
    <br>
 
    <% if logged_in? %>
-   <% if @user.meals.include?(@meal)%>
-   <a href="<%= favorite_path(@meal, type: "unfavorite") %>" class="btn btn-primary">Unfavorite</a>
-   <% else %>
-   <a href="<%= favorite_path(@meal, type: "favorite") %>" class="btn btn-primary">Add to Favorites</a>
-   <% end %>
-   <% end %>
-
+      <% if @user.meals.include?(@meal)%>
+         <a href="<%= favorite_path(@meal, type: "unfavorite") %>" class="btn btn-primary">Unfavorite</a>
+      <% else %>
+         <a href="<%= favorite_path(@meal, type: "favorite") %>" class="btn btn-primary">Add to Favorites</a>
+      <% end %>
    <br><br>
+   <% end %>
 
    <ul>
       <% @meal.recipes.each do |ing| %>
@@ -35,56 +34,73 @@
    </ol>
 
    <br>
-
-   <br>
    <br>
 
+   <h3>Reviews:</h3><br>
    <div class="container bootstrap snippet">
       <div class="row">
          <div class="col-md-12">
             <div class="blog-comment">
-               <h3>Reviews</h3>
                <% if logged_in? %>
-               <%= flash[:message] %>
-               <%= form_for @review, html: { class: "form-block" } do |f| %>
-               <%= f.hidden_field :user_id, value: current_user.id %>
-               <%= f.hidden_field :meal_id, value: @meal.id %>
-               <div class="row">
-                  <div class="col-xs-12 col-sm-6">
-                     <div class="form-group">
-                        <%= f.label :comment %>
-                        <%= f.text_field :comment, class: "form-input" %><br>
+
+                  <% if flash[:message].class == Array %>
+                     <p><% flash[:message].each do |msg| %>
+                     <li style="color: red;"><%= msg %></li>
+                     <% end %>
+                     </p>
+                  <% end %>
+
+                  <%= form_for @review, html: { class: "form-block" } do |f| %>
+                  <%= f.hidden_field :user_id, value: current_user.id %>
+                  <%= f.hidden_field :meal_id, value: @meal.id %>
+                  <div class="row">
+
+                     <div class="col-xs-12 col-sm-6">
+                        <div class="form-group">
+                           <%= f.label :comment %>
+                           <%= f.text_field :comment, class: "form-input" %><br>
+                        </div>
                      </div>
-                  </div>
-                  <div class="col-xs-12 col-sm-6">
-                     <div class="form-group">
-                        <%= f.label :stars %>
-                        <%= f.number_field :stars, min: 1, max: 5, class: "form-input" %><br>
+
+                     <div class="col-xs-12 col-sm-6">
+                        <div class="form-group">
+                           <%= f.label :stars %>
+                           <%= f.number_field :stars, min: 1, max: 5, class: "form-input" %><br>
+                        </div>
                      </div>
+                  
+                     <%= f.submit "Submit Review", class: "btn btn-primary mx-auto" %>
                   </div>
-                  <%= f.submit "Submit Review", class: "btn btn-primary mx-auto" %>
-               </div>
-               <% end %>
+                  <% end %>
+
                <% else %>
-               Please <%= link_to "login", login_path %> to review meal
+               Please <%= link_to "login", login_path %> to review meal.
                <% end %>
+
                <hr/>
                <ul class="comments">
-               Average Rating: <%= @meal.average_rating %><br><br>
-                  <% @meal.reviews.each do |rev| %> 
-                  <li class="clearfix">
-                     <div class="post-comments">
-                        <p class="meta"><%= rev.user.name %> says:</p>
-                        <p>
-                           Stars: <%= rev.display_stars %><br>
-                           <%= rev.comment %><br>
-                           <% if current_user == rev.user %>
-                           <%= link_to "Edit", edit_review_path(rev), method: 'get' %> / <%= link_to "Delete", review_path(rev), method: 'delete', data: { confirm: "Are you sure you want to delete?" } %>
-                           <% end %>
-                        </p>
-                     </div>
-                  </li>
-                  <% end %> 
+
+               <% if @meal.reviews.any? %>
+                  Average Rating: <%= @meal.average_rating %><br><br>
+               <% else %>
+                  <p>Be the first to review this meal!</p>
+               <% end %>
+
+                     <% @meal.reviews.each do |rev| %> 
+                     <li class="clearfix">
+                        <div class="post-comments">
+                           <p class="meta"><%= rev.user.name %> says:</p>
+                           <p>
+                              Stars: <%= rev.display_stars %><br>
+                              <%= rev.comment %><br>
+                              <% if current_user == rev.user %>
+                                 <%= link_to "Edit", edit_review_path(rev), method: 'get' %> / <%= link_to "Delete", review_path(rev), method: 'delete', data: { confirm: "Are you sure you want to delete?" } %>
+                              <% end %>
+                           </p>
+                        </div>
+                     </li>
+                     <% end %> 
+
                </ul>
             </div>
          </div>

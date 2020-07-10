@@ -1,12 +1,17 @@
 <br>
 <br>
-<br>
-
-
 
 <%= form_for @review, url: update_review_path, html: { class: "form-signin" }  do |f| %>
-<h1 class="h3 mb-3 font-weight-normal">Edit Your Review:</h1>
-<%= flash[:message] %><br><br>
+
+<h1 class="h3 mb-3 font-weight-bold">Edit Your Review:</h1>
+
+<% if flash[:message].class == Array %>
+    <p><% flash[:message].each do |msg| %>
+        <li style="color: red;"><%= msg %></li>
+    <% end %>
+    </p>
+<% end %>
+
     <%= f.hidden_field :user_id, value: current_user.id %>
     <%= f.hidden_field :meal_id, value: @meal.id %>
     

@@ -6,19 +6,16 @@ class Review < ApplicationRecord
 
     def display_stars
         if self.stars == 1
-            starz = "★"
+            star = "★"
         elsif self.stars == 2
-            starz = "★★"
+            star = "★★"
         elsif self.stars == 3
-            starz = "★★★"
+            star = "★★★"
         elsif self.stars == 4
-            starz = "★★★★"
+            star = "★★★★"
         elsif self.stars == 5
-            starz = "★★★★★"
+            star = "★★★★★"
         end  
-        starz  
+        star  
     end
-
-    
-
 end

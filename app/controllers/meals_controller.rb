@@ -25,7 +25,5 @@ class MealsController < ApplicationController
         end
     end
 
-    def home
-
-    end
+    
 end

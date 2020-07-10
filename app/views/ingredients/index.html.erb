@@ -1,8 +1,15 @@
 <br>
 <br>
-<br>
 
-  <h1 class="p-2"> Ingredients: </h1>
+  <div style="text-align: left;">
+  <h1>Ingredients:</h1>
+
+  <%= form_tag ingredients_path, :method => 'get' do %>
+    <%#= label_tag(:search, "What Ingredient Do You Want To Search For?") %>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag("Search for Ingredient", :name => nil, class: "btn btn-primary btn-sm") %>
+  <% end %>
+  </div>
 
   <div class="row row-cols-1 row-cols-md-3 p-5">
     <% @ingredients.order(:name).each do |ingredient| %>
@@ -16,5 +23,5 @@
     </div>
     <% end %>
   </div>
-</div>
+
 

@@ -5,17 +5,11 @@ class Meal < ApplicationRecord
     has_many :favorite_meals
     has_many :users, through: :favorite_meals
 
-    has_many :reviews #class_name: "Review" # foreign_key: :meal_id
+    has_many :reviews
     has_many :reviewers, through: :reviews, source: :user
 
     def read_instructions
         self.instructions.split(/[\r\n]+/)
-    end
-
-    def self.collect_categories
-        self.all.collect do |meal|
-            meal.category
-        end 
     end
 
     def average_rating
@@ -28,7 +22,7 @@ class Meal < ApplicationRecord
 
     def self.search(search)
         if search
-            meal_type = Meal.find_by(name: search)
+            meal_type = Meal.where(name: search.titleize)
         else
             @meals = Meal.all
         end

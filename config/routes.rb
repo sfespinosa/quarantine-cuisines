@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   root "meals#home"
   resources :reviews, only: [:create, :destroy]
   resources :ingredients, only: [:index, :show]
-  #get 'meals/:id/review', to: 'reviews#new', as: 'user_review'
   resources :meals, only: [:index, :show]
   get 'meals/:id/favorite', to: 'meals#favorite', as: 'favorite'
   get 'reviews/:id/edit', to: 'reviews#edit', as: 'edit_review'

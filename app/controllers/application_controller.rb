@@ -1,16 +1,6 @@
 class ApplicationController < ActionController::Base
     helper_method :current_user, :redirect_user, :logged_in?
-    
-    # before_action :current_user
-    # def index
-    #     user = User.find(session[:user_id])
-    #     if user
-    #         redirect_to user_path
-    #     else
-    #         flash[:message] = "Please login to view favorites"
-    #         redirect_to login_path
-    #     end
-    # end
+
     def logged_in?
         !!current_user
     end

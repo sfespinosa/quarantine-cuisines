@@ -1,10 +1,11 @@
 <br>
 <br>
-<br>
-<br>
 <%= form_for :auth, html: { class: "form-signin" } do |f| %>
-<h1 class="h3 mb-3 font-weight-normal">Please Sign In!</h1>
-<%= flash[:message] %><br><br>
+
+<h1 class="h3 mb-3 font-weight-bold">Please Sign In</h1>
+
+<p style="color: red;"><%= flash[:message] %></p>
+
     <%= f.label :name %>
     <%= f.text_field :name, class: "form-control" %><br>
 
@@ -12,4 +13,5 @@
     <%= f.password_field :password, class: "form-control" %><br>
 
 <%= f.submit "Login", class: "btn btn-lg btn-primary btn-block"%>
+
 <% end %>
