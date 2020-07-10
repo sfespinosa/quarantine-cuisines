@@ -1,14 +1,13 @@
 <br>
 <br>
-<br>
 
 <div class="container-sm">
-   <h1 ><%= @meal.name %></h1>
+   <h1 ><%= @meal.name.titleize %></h1>
    <%= image_tag(@meal.image_url) %><br>
    <p>Source:  <%= link_to @meal.source, @meal.source %></p>
 
-   Category: <%= @meal.category %><br>
-   Cuisine: <%= @meal.area %><br>
+   <strong>Category:</strong> <%= @meal.category %><br>
+   <strong>Cuisine:</strong> <%= @meal.area %><br>
    
    <br>
 

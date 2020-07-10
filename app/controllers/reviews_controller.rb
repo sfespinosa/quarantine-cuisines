@@ -1,12 +1,7 @@
 class ReviewsController < ApplicationController
-    before_action :current_user, only: [:new, :create, :edit]
-    before_action :redirect_user, only: [:new, :create, :edit]
+    before_action :current_user, only: [:create, :edit]
+    before_action :redirect_user, only: [:create, :edit]
     before_action :set_meal_review, only: [:edit, :update, :destroy]
-    
-    def new
-        @meal = Meal.find(params[:id])
-        @review = Review.new
-    end
 
     def create
         @meal = Meal.find(params[:review][:meal_id])

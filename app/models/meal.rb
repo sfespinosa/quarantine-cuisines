@@ -21,8 +21,8 @@ class Meal < ApplicationRecord
     end
 
     def self.search(search)
-        if search
-            meal_type = Meal.where(name: search.titleize)
+        if search && search != ""
+            meal_type = Meal.where("name LIKE ?", "%#{search}%")
         else
             @meals = Meal.all
         end
